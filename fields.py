@@ -13,7 +13,7 @@ class ImageConvertField(ImageField):
 
     def contribute_to_class(self, cls, name):
         super(ImageConvertField, self).contribute_to_class(cls, name)
-        signals.post_init.connect(self.convert_image, sender=cls)
+        signals.pre_save.connect(self.convert_image, sender=cls)
 
     def convert_image(self, instance, force=False, *args, **kwargs):
         file = getattr(instance, self.attname)
