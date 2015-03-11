@@ -30,4 +30,4 @@ class ImageConvertField(ImageField):
                 im.save(temp_handle, self.output_format)
                 temp_handle.seek(0)
                 suf = SimpleUploadedFile("%s.%s" % (os.path.splitext(os.path.basename(file.name))[0], self.output_format), temp_handle.read())
-                getattr(instance, self.attname).save(suf.name, suf)
+                getattr(instance, self.attname).save(suf.name, suf, save=False)
